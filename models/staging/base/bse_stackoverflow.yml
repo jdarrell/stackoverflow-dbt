@@ -74,10 +74,14 @@ sources:
 
           - name: answer_count
             description: number of answers the question has received
+            tests:
+              - not_null
           - name: body
             description: question content
           - name: comment_count
             description: number of comments on the question
+            tests:
+              - not_null
           - name: favorite_count
             description: number of times the question has been favorited/bookmarked
           - name: owner_display_name
@@ -90,8 +94,12 @@ sources:
             description: title of the question
           - name: score
             description: combination of upvotes/downvotes (upvotes - downvotes)
+            tests:
+              - not_null
           - name: view_count
             description: number of times the question has been viewed
+            tests:
+              - not_null
 
           - name: community_owned_date
             description: time when question (and answers) was community wiki'd
