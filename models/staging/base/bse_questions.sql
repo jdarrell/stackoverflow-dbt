@@ -19,6 +19,7 @@ base as (
         comment_count,
         coalesce(favorite_count, 0) as favorite_count,
         owner_display_name,
+        split(tags, '|') as tag_list,
         tags,
         title,
         score,
