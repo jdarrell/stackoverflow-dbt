@@ -24,7 +24,7 @@ base as (
         website_url,
 
         creation_date as created_at, --datetime(creation_date, 'America/Denver') as created_at,
-        last_access_date as last_activity_at
+        last_access_date as last_access_at
 
     from source
 
