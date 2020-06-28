@@ -17,7 +17,7 @@ base as (
         location,
         profile_image_url,
         reputation,
-        timestamp_diff(current_timestamp(), creation_date, day) as tenure,
+        timestamp_diff(current_timestamp(), creation_date, day) as tenure_days,
         down_votes + up_votes as total_votes,
         up_votes,
         views,
