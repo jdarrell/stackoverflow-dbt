@@ -1,0 +1,141 @@
+version: 2
+
+sources:
+  - name: stackoverflow
+    database: bigquery-public-data
+    schema: stackoverflow
+
+    tables:
+      - name: answers
+        identifier: posts_answers
+        columns:
+          - name: id
+            description: PK for answers
+            tests:
+              - not_null
+              - unique
+          - name: accepted_answer_id
+            description: always null, so ignore on base model
+          - name: last_editor_user_id
+            description: users.id of the user who last edited the answer
+          - name: owner_user_id
+            description: users.id if the user hasn't been deleted
+          - name: parent_id
+            description: ID of the question the answer belongs to
+            tests:
+              - not_null
+
+          - name: answer_count
+            description: always null, so ignore on base model
+          - name: body
+            description: answer content
+          - name: comment_count
+            description: number of comments on the answer
+          - name: favorite_count
+            description: always null, so ignore on base model
+          - name: owner_display_name
+            description: display name of the user that answered the question
+          - name: tags
+            description: very little data, focus on question tags instead
+          - name: title
+            description: always null, so ignore on base model
+          - name: score
+            description: combination of upvotes/downvotes (upvotes - downvotes)
+          - name: view_count
+            description: always null, so ignore on base model
+
+          - name: community_owned_date
+            description: time when question (and answers) was community wiki'd
+          - name: creation_date
+            description: time when the answer was created
+            tests:
+              - not_null
+          - name: last_activity_date
+            description: time of last activity on the answer
+          - name: last_edit_date
+            description: time of last edit, if there was one
+
+      - name: questions
+        identifier: posts_questions
+        columns:
+          - name: id
+            description: PK for questions
+            tests:
+              - not_null
+              - unique
+          - name: accepted_answer_id
+            description: ID of the answer that was accepted for the question
+          - name: last_editor_user_id
+            description: users.id of the user who last edited the question
+          - name: owner_user_id
+            description: users.id if the user hasn't been deleted
+          - name: parent_id
+            description: always null, so ignore on base model
+
+          - name: answer_count
+            description: number of answers the question has received
+          - name: body
+            description: question content
+          - name: comment_count
+            description: number of comments on the question
+          - name: favorite_count
+            description: number of times the question has been favorited/bookmarked
+          - name: owner_display_name
+            description: display name of the user that asked the question
+          - name: tags
+            description: list of tags (question topic(s)) delimited by a pipe |
+            tests:
+              - not_null
+          - name: title
+            description: title of the question
+          - name: score
+            description: combination of upvotes/downvotes (upvotes - downvotes)
+          - name: view_count
+            description: number of times the question has been viewed
+
+          - name: community_owned_date
+            description: time when question (and answers) was community wiki'd
+          - name: creation_date
+            description: time when the question was created
+            tests:
+              - not_null
+          - name: last_activity_date
+            description: time of last activity on the question
+          - name: last_edit_date
+            description: time of last edit, if there was one
+
+      - name: users
+        columns:
+          - name: id
+            description: PK for users
+            tests:
+              - not_null
+              - unique
+
+          - name: about_me
+            description: short description of the user
+          - name: age
+            description: always null, so ignore on base model
+          - name: display_name
+            description: display name of the user
+          - name: down_votes
+            description: number of downvotes cast by the user
+          - name: location
+            description: where the user is located
+          - name: profile_image_url
+            description: URL of the profile image chosen by the user
+          - name: reputation
+            description: number representing the user's reputation. the higher the better
+          - name: up_votes
+            description: number of upvotes case by the user
+          - name: views
+            description: number of times the profile of the user has been viewed
+          - name: website_url
+            description: URL of the user's website, if provided
+
+          - name: creation_date
+            description: when the user was created
+            tests:
+              - not_null
+          - name: last_access_date
+            description: when the user last loaded a Stack Overflow page
