@@ -91,7 +91,7 @@ sources:
           - name: owner_display_name
             description: display name of the user that asked the question
           - name: tags
-            description: list of tags (question topic(s)) delimited by a pipe |
+            description: list of tags (question topic(s)) delimited by a pipe '|', max of 6 per question
             tests:
               - not_null
           - name: title
