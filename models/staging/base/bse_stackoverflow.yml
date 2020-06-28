@@ -31,6 +31,8 @@ sources:
             description: answer content
           - name: comment_count
             description: number of comments on the answer
+            tests:
+              - not_null
           - name: favorite_count
             description: always null, so ignore on base model
           - name: owner_display_name
@@ -41,6 +43,8 @@ sources:
             description: always null, so ignore on base model
           - name: score
             description: combination of upvotes/downvotes (upvotes - downvotes)
+            tests:
+              - not_null
           - name: view_count
             description: always null, so ignore on base model
 
