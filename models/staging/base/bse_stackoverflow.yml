@@ -120,6 +120,8 @@ sources:
             description: display name of the user
           - name: down_votes
             description: number of downvotes cast by the user
+            tests:
+              - not_null
           - name: location
             description: where the user is located
           - name: profile_image_url
@@ -128,6 +130,8 @@ sources:
             description: number representing the user's reputation. the higher the better
           - name: up_votes
             description: number of upvotes case by the user
+            tests:
+              - not_null
           - name: views
             description: number of times the profile of the user has been viewed
           - name: website_url
