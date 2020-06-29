@@ -1,4 +1,4 @@
-{{ config(tags = ["stackoverflow","fact"]) }}
+{{ config(tags = ["stackoverflow","dim"]) }}
 
 with users as (
 
