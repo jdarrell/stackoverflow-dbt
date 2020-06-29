@@ -12,7 +12,7 @@ base as (
         id as question_id,
         accepted_answer_id,
         last_editor_user_id,
-        owner_user_id,
+        owner_user_id as question_user_id,
 
         answer_count,
         body,

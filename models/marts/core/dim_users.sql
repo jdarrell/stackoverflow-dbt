@@ -19,9 +19,9 @@ question_aggregate as (
 
     select
 
-        owner_user_id,
+        question_user_id,
 
-        count(owner_user_id) as question_count,
+        count(question_user_id) as question_count,
         sum(if(answer_count = 0, 1, 0)) as unanswered_question_count,
         sum(if(accepted_answer_id is not null, 1, 0)) as answer_accepted_count,
         avg(view_count) as average_question_view_count,
@@ -37,7 +37,7 @@ answer_aggregate as (
 
     select
 
-        owner_user_id,
+        answer_user_id,
 
         count(*) as answer_count,
         sum(if(is_accepted_answer, 1, 0)) as accepted_answer_count,
@@ -70,8 +70,8 @@ joined as (
         answer_aggregate.last_answer_at
 
     from users
-    left join question_aggregate on users.user_id = question_aggregate.owner_user_id
-    left join answer_aggregate on users.user_id = answer_aggregate.owner_user_id
+    left join question_aggregate on users.user_id = question_aggregate.question_user_id
+    left join answer_aggregate on users.user_id = answer_aggregate.answer_user_id
 
 )
 

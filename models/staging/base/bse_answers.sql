@@ -11,7 +11,7 @@ base as (
 
         id as answer_id,
         last_editor_user_id,
-        owner_user_id,
+        owner_user_id as answer_user_id,
         parent_id as question_id,
 
         body,
