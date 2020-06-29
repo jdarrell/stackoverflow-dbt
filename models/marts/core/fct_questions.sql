@@ -6,7 +6,7 @@
       "range": {
         "start": 0,
         "end": 65000000,
-        "interval": 10000
+        "interval": 20000
       }
     }
 ) }}
