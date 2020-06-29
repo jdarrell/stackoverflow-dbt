@@ -34,10 +34,10 @@ joined as (
         answer_aggregate.max_answer_score,
         answer_aggregate.first_answer_at,
         answer_aggregate.last_answer_at,
-        timestamp_diff(questions.created_at, answer_aggregate.first_answer_at, second) / 60.0 as minutes_to_first_answer,
+        timestamp_diff(answer_aggregate.first_answer_at, questions.created_at, second) / 60.0 as minutes_to_first_answer,
         if(
             questions.answer_count = 0,
-            timestamp_diff(questions.created_at, current_timestamp(), second),
+            timestamp_diff(current_timestamp(), questions.created_at, second),
             null
         ) / 60.0 as question_unanswered_minutes
 
