@@ -7,7 +7,7 @@ with users as (
 ),
 questions as (
 
-    select * from {{ ref('bse_questions') }}
+    select * from {{ ref('fct_questions') }}
 
 ),
 answers as (
