@@ -1,4 +1,15 @@
-{{ config(tags = ["stackoverflow","fact"]) }}
+{{ config(
+    tags = ["stackoverflow","fact"],
+    partition_by={
+      "field": "question_id",
+      "data_type": "int64",
+      "range": {
+        "start": 0,
+        "end": 65000000,
+        "interval": 10000
+      }
+    }
+) }}
 
 with questions as (
 
@@ -43,6 +54,8 @@ joined as (
 
     from questions
     left join answer_aggregate on questions.question_id = answer_aggregate.question_id
+
+    where questions.created_at >= '2014-01-01'
 
 )
 
