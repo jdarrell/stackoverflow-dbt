@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: fct_answers
+    # tests:
+    #   - dbt_utils.equal_rowcount:
+    #       compare_model: ref('bse_answers')
+    columns:
+      - name: answer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_questions
+    # tests:
+    #   - dbt_utils.equal_rowcount:
+    #       compare_model: ref('bse_questions')
+    columns:
+      - name: question_id
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_users
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('bse_users')
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_question_tags
+    columns:
+      - name: question_tag_id
+        description: PK, surrogate key created from question_id and tag
+        tests:
+          - not_null
+          - unique
+      - name: question_id
+        description: FK to fct_questions.question_id, ID of the question
+        tests:
+          - not_null
+      - name: question_user_id_combined
+        description: Identifier of the user who asked the question. question_user_id unless user is deleted, then owner_display_name
+        tests:
+          - not_null
+      - name: tag
+        description: Tag associated with the question
+        tests:
+          - not_null
