@@ -12,6 +12,7 @@ base as (
         id as answer_id,
         last_editor_user_id,
         owner_user_id as answer_user_id,
+        coalesce(cast(owner_user_id as string), owner_display_name) as answer_user_id_combined,
         parent_id as question_id,
 
         body,

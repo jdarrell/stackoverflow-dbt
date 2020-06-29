@@ -13,6 +13,7 @@ base as (
         accepted_answer_id,
         last_editor_user_id,
         owner_user_id as question_user_id,
+        coalesce(cast(owner_user_id as string), owner_display_name) as question_user_id_combined,
 
         answer_count,
         body,
