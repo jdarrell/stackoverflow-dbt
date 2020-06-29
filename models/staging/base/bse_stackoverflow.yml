@@ -155,3 +155,34 @@ sources:
               - not_null
           - name: last_access_date
             description: when the user last loaded a Stack Overflow page
+
+models:
+  - name: bse_answers
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: source('stackoverflow', 'answers')
+    columns:
+      - name: answer_id
+        tests:
+          - not_null
+          - unique
+
+  - name: bse_questions
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: source('stackoverflow', 'questions')
+    columns:
+      - name: question_id
+        tests:
+          - not_null
+          - unique
+
+  - name: bse_users
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: source('stackoverflow', 'users')
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
