@@ -12,7 +12,7 @@ questions as (
 ),
 accepted_answers as (
 
-    select accepted_answer_id from questions where accepted_answer_id is not null
+    select distinct accepted_answer_id from questions where accepted_answer_id is not null
 
 ),
 joined as (
